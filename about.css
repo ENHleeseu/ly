@@ -1,0 +1,58 @@
+/* styles.css */
+
+/* General body styling */
+/* General body styling with background image */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/home/chungku/Desktop/lycafe/pic/abo.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* Navbar styling */
+nav {
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+}
+
+/* About section styling with centered text */
+#about {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: black;
+}
+
+#about h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#about p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+

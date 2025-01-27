@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu & Order</title>
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="top">
+        <div class="logo">LY KITCHEN</div>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About</a>
+            <a href="location.html">Location</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- Menu Section -->
+    <div class="menu-container">
+        <h1>Our Menu</h1>
+
+        <!-- Snacks Section -->
+        <div class="menu-section">
+            <h3>Snacks</h3>
+            <ul>
+                <li>
+                    <img src="fried.jpeg" alt="Momo">
+                    <span>Momo (veg, beef, cheese) - Nu.60/80</span>
+                    <button class="order-btn" data-item="Momo" data-price="60">Order</button>
+                </li>
+                <li>
+                    <img src="nachos.jpg" alt="Fried Momo">
+                    <span>Fried Momo (veg, beef) - Nu.80/100</span>
+                    <button class="order-btn" data-item="Fried Momo" data-price="80">Order</button>
+                </li>
+                <li>
+                    <img src="spring-rolls.jpg" alt="Spicy Korean Chicken">
+                    <span>Spicy Korean Chicken - Nu.250</span>
+                    <button class="order-btn" data-item="Spicy Korean Chicken" data-price="250">Order</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Beverages Section -->
+        <div class="menu-section">
+            <h3>Beverages</h3>
+            <ul>
+                <li>
+                    <img src="coffee.jpg" alt="Coffee">
+                    <span>Coffee (black/milk) - Nu.60</span>
+                    <button class="order-btn" data-item="Coffee" data-price="60">Order</button>
+                </li>
+                <li>
+                    <img src="fresh-juice.jpg" alt="Lemon Water">
+                    <span>Lemon Water - Nu.50</span>
+                    <button class="order-btn" data-item="Lemon Water" data-price="50">Order</button>
+                </li>
+                <li>
+                    <img src="coffee.jpg" alt="Hot Chocolate">
+                    <span>Hot Chocolate - Nu.80</span>
+                    <button class="order-btn" data-item="Hot Chocolate" data-price="80">Order</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Order Summary Section -->
+    <div class="order-summary">
+        <h2>Order Summary</h2>
+        <div id="order-list">
+            <p>No items in the order yet.</p>
+        </div>
+        <div class="order-total">
+            <strong>Total: Nu.<span id="total-price">0</span></strong>
+        </div>
+
+        <!-- Form to send order to email -->
+        <form id="order-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <input type="hidden" id="order-details" name="order">
+            <input type="hidden" id="total-price-input" name="total">
+            <label for="customer-email">Your Email:</label>
+            <input type="email" name="customer-email" id="customer-email" required>
+            <button type="submit" class="submit-order-btn">Submit Order (Email)</button>
+        </form>
+
+        <!-- WhatsApp Link for submitting order -->
+        <a id="whatsapp-order-btn" href="#" class="whatsapp-btn" target="_blank">Submit Order via WhatsApp</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

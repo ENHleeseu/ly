@@ -1,0 +1,143 @@
+/* General body styling with background image */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* Navbar styling */
+nav {
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+}
+
+/* Contact section styling */
+#contact {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: black;
+}
+
+#contact h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#contact p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Social Media Icons */
+.social-icons {
+    margin-top: 30px;
+}
+
+.social-icon {
+    display: inline-block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.social-icon i {
+    margin-right: 8px;
+}
+
+.social-icon:hover {
+    background-color: #ddd;
+    color: #555;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    #contact {
+        padding: 20px;
+    }
+
+    .social-icon {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 8px 0;
+    }
+
+    nav a {
+        padding: 10px 15px;
+    }
+
+    .social-icon {
+        font-size: 14px;
+    }
+}
