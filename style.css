@@ -9,7 +9,7 @@
 body {
     width: 100%;
     height: 100%;
-    background-image: url('/home/chungku/Desktop/lycafe/pic/ho.jpeg');
+    background-image: url('ho.jpeg');
     background-size: cover;
     font-family: Arial, sans-serif;
 }
@@ -117,7 +117,7 @@ a:hover {
 .right {
     width: 440px;
     height: 440px;
-    background-image: url('/home/chungku/Desktop/lycafe/pic/second.jpeg');
+    background-image: url('second.jpeg');
     background-size: cover;
     border-radius: 400px;
     display: flex;
@@ -200,11 +200,11 @@ a:hover {
 }
 
 #food1 {
-    background-image: url('/home/chungku/Desktop/lycafe/pic/second.jpeg');
+    background-image: url('second.jpeg');
 }
 
 #food2 {
-    background-image: url('/home/chungku/Desktop/lycafe/pic/kfc.jpeg');
+    background-image: url('kfc.jpeg');
 }
 
 .menu {
