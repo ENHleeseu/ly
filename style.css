@@ -119,10 +119,27 @@ a:hover {
     height: 440px;
     background-image: url('second.jpeg');
     background-size: cover;
-    border-radius: 400px;
+    background-position: center;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .right {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .right {
+        width: 200px;
+        height: 200px;
+    }
+}
+
 }
 
 .right::before {
@@ -193,11 +210,40 @@ a:hover {
 /********** Bottom Section **********/
 #food1, #food2 {
     background-size: cover;
-    width: 100px;
+    background-position: center;
+    width: 100px; /* Default size for larger screens */
     height: 100px;
-    border-radius: 100px;
-    margin: 0px 20px;
+    border-radius: 50%; /* Keep circular shape */
+    margin: 10px;
 }
+
+/* Adjust for medium screens */
+@media screen and (max-width: 768px) {
+    #food1, #food2 {
+        width: 80px;
+        height: 80px;
+        margin: 8px;
+    }
+}
+
+/* Adjust for small screens */
+@media screen and (max-width: 480px) {
+    #food1, #food2 {
+        width: 60px; /* Smaller size for very small screens */
+        height: 60px;
+        margin: 5px;
+    }
+}
+
+/* Layout container for the food images */
+.menu {
+    display: flex;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center;
+    flex-wrap: wrap; /* Wrap images on smaller screens */
+    gap: 10px; /* Add spacing between images */
+}
+
 
 #food1 {
     background-image: url('second.jpeg');
@@ -261,6 +307,22 @@ a:hover {
 
     .SocialMedia {
         display: none; /* Hide social media icons for mobile */
+    }
+}
+@media screen and (max-width: 768px) {
+    .heading .right {
+        width: 300px; /* Reduce size for mobile */
+        height: 300px;
+        margin-bottom: 20px;
+        background-image: url('second.jpeg'); /* Ensure the image is still applied */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .heading .right {
+        width: 200px; /* Further reduce size for very small screens */
+        height: 200px;
+        background-image: url('second.jpeg'); /* Ensure image remains */
     }
 }
 
