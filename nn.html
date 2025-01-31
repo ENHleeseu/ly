@@ -247,6 +247,19 @@
                         <button class="order-button" onclick="placeOrder('waffles', 200, 'quantity-waffles')">Order</button>
                     </li>
                 </ul>
+                <form id="orderForm" action="https://formsubmit.co/lykitchen762@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New Cafe Order">
+    <input type="hidden" name="_captcha" value="false"> <!-- Disable Captcha -->
+    
+    <input type="hidden" name="Customer Name" id="customerName">
+    <input type="hidden" name="Address" id="customerAddress">
+    <input type="hidden" name="Item Name" id="itemName">
+    <input type="hidden" name="Quantity" id="quantity">
+    <input type="hidden" name="Total Price" id="totalPrice">
+
+    <button type="submit" style="display:none;">Submit</button>
+</form>
+
             </div>
 
         </div>
@@ -267,32 +280,42 @@
     </footer>
 </body>
 </html>
+<script>
+    function placeOrder(itemName, price) {
+        let quantity = prompt("Enter quantity:");
 
+        if (!quantity || quantity <= 0) {
+            alert("Please enter a valid quantity.");
+            return;
+        }
 
-    <script>
-       function placeOrder(itemName, price, quantityInputId) {
-    const quantity = document.getElementById(quantityInputId).value;
-    const totalPrice = price * quantity;
+        let customerName = prompt("Enter your name:");
+        if (!customerName) {
+            alert("Order canceled. Name is required.");
+            return;
+        }
 
-    const customerName = prompt("Please enter your name:");
-    if (!customerName) {
-        alert("Order canceled. Name is required.");
-        return;
+        let customerAddress = prompt("Enter your address:");
+        if (!customerAddress) {
+            alert("Order canceled. Address is required.");
+            return;
+        }
+
+        let totalPrice = price * quantity;
+
+        // Fill in form fields
+        document.getElementById("customerName").value = customerName;
+        document.getElementById("customerAddress").value = customerAddress;
+        document.getElementById("itemName").value = itemName;
+        document.getElementById("quantity").value = quantity;
+        document.getElementById("totalPrice").value = "Nu." + totalPrice;
+
+        // Submit the form
+        document.getElementById("orderForm").submit();
+
+        alert(`Thank you, ${customerName}! Your order for ${quantity} x ${itemName} has been placed.`);
     }
-
-    const customerAddress = prompt("Please enter your address:");
-    if (!customerAddress) {
-        alert("Order canceled. Address is required.");
-        return;
-    }
-
-    const contactInfo = "📞 Phone: +975 17583707\n📧 Email: lykitchen762@gmail.com";
-
-    alert(`Thank you, ${customerName}! Your order for ${quantity} x ${itemName} (Total: Nu.${totalPrice}) has been placed.\nAddress: ${customerAddress}\n\nIf you have any questions, feel free to contact us:\n${contactInfo}`);
-    console.log(`Order details: ${customerName} ordered ${quantity} x ${itemName} for Nu.${totalPrice}, Address: ${customerAddress}`);
-}
+</script>
 
 
-    </script>
-</body>
-</html>
+    
