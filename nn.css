@@ -216,6 +216,39 @@ span {
         font-size: 1.2rem;
     }
 }
+.order-type {
+        margin-bottom: 20px;
+    }
+
+    .order-type input[type="radio"] {
+        margin-right: 10px;
+    }
+
+    #contactField {
+        margin-bottom: 20px;
+    }
+
+    #contactInput {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #45a049;
+    }
 
 @media (max-width: 480px) {
     header h1 {
