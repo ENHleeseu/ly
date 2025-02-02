@@ -264,7 +264,7 @@
     </div>
 
     <!-- Contact Information: Phone or Address -->
-    <div id="contactField" class="hidden">
+    <div id="contactField" style="display: none;">
         <label for="contactInput">Phone Number / Delivery Address:</label>
         <input type="text" name="contact" id="contactInput" placeholder="Enter your phone number or address" />
     </div>
@@ -280,6 +280,7 @@
     <button type="submit">Submit Order</button>
 </form>
 
+                
 
 
 
@@ -299,16 +300,17 @@
                 <a href="https://www.instagram.com/ly_kitchen_bumthang?igsh=djcyYXp6MHhleWpv&utm_source=qr" target="_blank">Instagram</a>
             </p>
         </footer>
-        
-    </footer>
     <script>
-    function toggleContactField() {
-    let orderType = document.querySelector('input[name="order_type"]:checked').value;
+        function toggleContactField() {
+    let orderType = document.querySelector('input[name="order_type"]:checked');
     let contactField = document.getElementById("contactField");
     let contactInput = document.getElementById("contactInput");
 
+    // Only toggle if an order type is selected
+    if (!orderType) return;
+
     // If Delivery is selected, show the address input field
-    if (orderType === "Delivery") {
+    if (orderType.value === "Delivery") {
         contactField.querySelector('label').textContent = "Delivery Address:";
         contactInput.placeholder = "Enter your delivery address";
     } 
@@ -319,7 +321,7 @@
     }
 
     // Show the contact field after selection
-    contactField.classList.add('visible');
+    contactField.style.display = 'block'; // Change to 'block' to display it
 }
 
 function placeOrder(itemName, price) {
@@ -363,6 +365,11 @@ function placeOrder(itemName, price) {
     document.getElementById("orderForm").submit();
 
     alert(`Thank you, ${customerName}! Your order for ${quantity} x ${itemName} (${orderType.value}) has been placed.`);
+
+    // Redirect back to the homepage after submitting the order
+    setTimeout(function() {
+        window.location.href = "index.html"; // Update with your actual homepage URL
+    }, 3000); // Redirect after 3 seconds
 }
 
         // Redirect back to the homepage after submitting the order
