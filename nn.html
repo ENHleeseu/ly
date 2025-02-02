@@ -253,27 +253,33 @@
     <input type="hidden" name="_autoresponse" value="Thank you for your order! We will contact you soon."> <!-- Auto-reply message -->
     <input type="hidden" name="_template" value="table"> <!-- Better email format -->
 
-    <!-- Customer Information -->
+    <!-- Order Type: Pick Up or Delivery -->
+    <div class="order-type">
+        <label>
+            <input type="radio" name="order_type" value="Pick Up" onchange="toggleContactField()"> Pick Up
+        </label>
+        <label>
+            <input type="radio" name="order_type" value="Delivery" onchange="toggleContactField()"> Delivery
+        </label>
+    </div>
+
+    <!-- Contact Information: Phone or Address -->
+    <div id="contactField" class="hidden">
+        <label for="contactInput">Phone Number / Delivery Address:</label>
+        <input type="text" name="contact" id="contactInput" placeholder="Enter your phone number or address" />
+    </div>
+
+    <!-- Hidden Fields -->
     <input type="hidden" name="Customer Name" id="customerName">
-    <input type="hidden" name="Contact Info" id="contactInfo"> <!-- This will store either the phone number or delivery address -->
+    <input type="hidden" name="Address" id="customerAddress">
     <input type="hidden" name="Item Name" id="itemName">
     <input type="hidden" name="Quantity" id="quantity">
     <input type="hidden" name="Total Price" id="totalPrice">
     <input type="hidden" name="Order Type" id="orderType"> <!-- Pick Up or Delivery -->
 
-    <!-- Add Order Type (Pickup or Delivery) -->
-    <label>Order Type:</label>
-    <input type="radio" name="order_type" value="Pickup" checked> Pickup
-    <input type="radio" name="order_type" value="Delivery"> Delivery
-
-    <!-- Contact Info (Phone Number for Pick Up / Address for Delivery) -->
-    <div id="contactField">
-        <label for="contact">Phone Number or Delivery Address:</label>
-        <input type="text" id="contact" name="contact" placeholder="Enter your phone number or address">
-    </div>
-
-    <button type="submit" style="display:none;">Submit</button>
+    <button type="submit">Submit Order</button>
 </form>
+
 
 
 
@@ -296,65 +302,68 @@
         
     </footer>
     <script>
-    // Show or hide the contact field based on order type
     function toggleContactField() {
-        let orderType = document.querySelector('input[name="order_type"]:checked').value;
-        let contactField = document.getElementById("contactField");
-        
-        if (orderType === "Delivery") {
-            contactField.querySelector('label').textContent = "Delivery Address:";
-            contactField.querySelector('input').placeholder = "Enter your delivery address";
-        } else {
-            contactField.querySelector('label').textContent = "Phone Number:";
-            contactField.querySelector('input').placeholder = "Enter your phone number";
-        }
+    let orderType = document.querySelector('input[name="order_type"]:checked').value;
+    let contactField = document.getElementById("contactField");
+    let contactInput = document.getElementById("contactInput");
+
+    // If Delivery is selected, show the address input field
+    if (orderType === "Delivery") {
+        contactField.querySelector('label').textContent = "Delivery Address:";
+        contactInput.placeholder = "Enter your delivery address";
+    } 
+    // If Pick Up is selected, show the phone number input field
+    else {
+        contactField.querySelector('label').textContent = "Phone Number:";
+        contactInput.placeholder = "Enter your phone number";
     }
 
-    // Add an event listener to detect changes in order type
-    document.querySelectorAll('input[name="order_type"]').forEach(input => {
-        input.addEventListener('change', toggleContactField);
-    });
+    // Show the contact field after selection
+    contactField.classList.add('visible');
+}
 
-    function placeOrder(itemName, price) {
-        let quantity = prompt("Enter quantity:");
+function placeOrder(itemName, price) {
+    let quantity = prompt("Enter quantity:");
 
-        if (!quantity || quantity <= 0) {
-            alert("Please enter a valid quantity.");
-            return;
-        }
+    if (!quantity || quantity <= 0) {
+        alert("Please enter a valid quantity.");
+        return;
+    }
 
-        let customerName = prompt("Enter your name:");
-        if (!customerName) {
-            alert("Order canceled. Name is required.");
-            return;
-        }
+    let customerName = prompt("Enter your name:");
+    if (!customerName) {
+        alert("Order canceled. Name is required.");
+        return;
+    }
 
-        let contactInfo = document.getElementById("contact").value;
-        let orderType = document.querySelector('input[name="order_type"]:checked');
-        if (!orderType) {
-            alert("Please select Pick Up or Delivery.");
-            return;
-        }
+    let orderType = document.querySelector('input[name="order_type"]:checked');
+    if (!orderType) {
+        alert("Please select Pick Up or Delivery.");
+        return;
+    }
 
-        if (!contactInfo) {
-            alert("Order canceled. Contact information is required.");
-            return;
-        }
+    // Get contact information based on order type
+    let contactInfo = document.getElementById("contactInput").value;
+    if (!contactInfo) {
+        alert("Please provide your phone number or address.");
+        return;
+    }
 
-        let totalPrice = price * quantity;
+    let totalPrice = price * quantity;
 
-        // Fill in form fields
-        document.getElementById("customerName").value = customerName;
-        document.getElementById("contactInfo").value = contactInfo;
-        document.getElementById("itemName").value = itemName;
-        document.getElementById("quantity").value = quantity;
-        document.getElementById("totalPrice").value = "Nu." + totalPrice;
-        document.getElementById("orderType").value = orderType.value;
+    // Fill in form fields
+    document.getElementById("customerName").value = customerName;
+    document.getElementById("itemName").value = itemName;
+    document.getElementById("quantity").value = quantity;
+    document.getElementById("totalPrice").value = "Nu." + totalPrice;
+    document.getElementById("orderType").value = orderType.value;
+    document.getElementById("customerAddress").value = contactInfo;
 
-        // Submit the form
-        document.getElementById("orderForm").submit();
+    // Submit the form
+    document.getElementById("orderForm").submit();
 
-        alert(`Thank you, ${customerName}! Your order for ${quantity} x ${itemName} (${orderType.value}) has been placed.`);
+    alert(`Thank you, ${customerName}! Your order for ${quantity} x ${itemName} (${orderType.value}) has been placed.`);
+}
 
         // Redirect back to the homepage after submitting the order
         setTimeout(function() {
