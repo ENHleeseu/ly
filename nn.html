@@ -250,23 +250,31 @@
                 <form id="orderForm" action="https://formsubmit.co/lykitchen762@gmail.com" method="POST">
     <input type="hidden" name="_subject" value="New Cafe Order">
     <input type="hidden" name="_captcha" value="false"> <!-- Disable Captcha -->
+    <input type="hidden" name="_autoresponse" value="Thank you for your order! We will contact you soon."> <!-- Auto-reply message -->
+    <input type="hidden" name="_template" value="table"> <!-- Better email format -->
 
+    <!-- Customer Information -->
     <input type="hidden" name="Customer Name" id="customerName">
     <input type="hidden" name="Address" id="customerAddress">
     <input type="hidden" name="Item Name" id="itemName">
     <input type="hidden" name="Quantity" id="quantity">
     <input type="hidden" name="Total Price" id="totalPrice">
-    <input type="hidden" name="Order Type" id="orderType"> <!-- Added Order Type -->
+    <input type="hidden" name="Order Type" id="orderType"> <!-- Pick Up or Delivery -->
 
-    <label for="pickup">Pick Up</label>
-    <input type="radio" id="pickup" name="order_type" value="Pick Up" onclick="setOrderType('Pick Up')">
+    <!-- Add Order Type (Pickup or Delivery) -->
+    <label>Order Type:</label>
+    <input type="radio" name="order_type" value="Pickup" checked> Pickup
+    <input type="radio" name="order_type" value="Delivery"> Delivery
 
-    <label for="delivery">Delivery</label>
-    <input type="radio" id="delivery" name="order_type" value="Delivery" onclick="setOrderType('Delivery')">
+    <!-- Delivery Address Input (shown only if delivery is selected) -->
+    <div id="addressField" style="display: none;">
+        <label for="address">Delivery Address:</label>
+        <input type="text" id="address" name="address" placeholder="Enter your address">
+    </div>
 
-    <br>
     <button type="submit" style="display:none;">Submit</button>
 </form>
+
 
             </div>
 
@@ -286,9 +294,24 @@
         </footer>
         
     </footer>
-</body>
-</html>
-<script>
+    <script>
+    // Show or hide the address field based on order type
+    function toggleAddressField() {
+        let orderType = document.querySelector('input[name="order_type"]:checked').value;
+        let addressField = document.getElementById("addressField");
+        
+        if (orderType === "Delivery") {
+            addressField.style.display = "block";
+        } else {
+            addressField.style.display = "none";
+        }
+    }
+
+    // Add an event listener to detect changes in order type
+    document.querySelectorAll('input[name="order_type"]').forEach(input => {
+        input.addEventListener('change', toggleAddressField);
+    });
+
     function placeOrder(itemName, price) {
         let quantity = prompt("Enter quantity:");
 
@@ -311,7 +334,7 @@
         }
 
         if (orderType.value === "Delivery") {
-            customerAddress = prompt("Enter your address:");
+            customerAddress = document.getElementById("address").value;
             if (!customerAddress) {
                 alert("Order canceled. Address is required for delivery.");
                 return;
@@ -336,13 +359,9 @@
         alert(`Thank you, ${customerName}! Your order for ${quantity} x ${itemName} (${orderType.value}) has been placed.`);
     }
 
-    function setOrderType(type) {
-        document.getElementById("orderType").value = type;
-    }
+    // Initialize the form with the correct visibility
+    toggleAddressField();
 
-    setTimeout(function() {
-        window.location.href = "thank.html"; // Change this to your original page
-    }, 3000); // Redirect after 3 seconds
 </script>
-
-    
+</body>
+</html>
